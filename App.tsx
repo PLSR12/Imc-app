@@ -5,7 +5,7 @@ import { Text, View, TextInput, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 
 export default function App() {
-  const [data, setData] = useState({
+  const [data, setData] = useState<any>({
     name: '',
     height: 0,
     weight: 0,
@@ -35,43 +35,45 @@ export default function App() {
 
       setData({ ...data, result: imc, resultText: imcDefinition })
     } else {
+      setData({
+        name: '',
+        height: 0,
+        weight: 0,
+        result: 0,
+        resultText: '',
+      })
       alert('Preencha os campos')
     }
   }
-  console.log(data)
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Calcule seu IMC</Text>
       <View style={styles.input_container}>
         <TextInput
           placeholder="Nome:"
           style={styles.input}
-          onChange={(e: any) => {
-            setData({ ...data, name: e.target.value })
-          }}
+          onChangeText={(name: any) => setData({ ...data, name: name })}
         />
         <TextInput
           placeholder="Peso:"
           keyboardType="numeric"
           style={styles.input}
-          onChange={(e: any) => {
-            setData({ ...data, weight: e.target.value })
-          }}
+          onChangeText={(weight: any) => setData({ ...data, weight: weight })}
         />
         <TextInput
           placeholder="Altura:"
           keyboardType="numeric"
           style={styles.input}
-          onChange={(e: any) => {
-            setData({ ...data, height: e.target.value })
-          }}
+          onChangeText={(height: any) => setData({ ...data, height: height })}
         />
       </View>
 
       <TouchableOpacity onPress={resultImc} style={styles.button}>
         <Text style={styles.buttonText}>Calcular</Text>
       </TouchableOpacity>
-      <Text style={styles.result}>{data.result}</Text>
+
+      <Text style={styles.result}>{data.result != 0 && data.result}</Text>
       <Text style={[styles.result, { fontSize: 40 }]}>{data.resultText}</Text>
 
       <StatusBar style="auto" />
