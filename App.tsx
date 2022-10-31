@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar'
 import { useState } from 'react'
-
 import { Text, View, TextInput, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 
@@ -35,48 +33,49 @@ export default function App() {
 
       setData({ ...data, result: imc, resultText: imcDefinition })
     } else {
-      setData({
-        name: '',
-        height: 0,
-        weight: 0,
-        result: 0,
-        resultText: '',
-      })
       alert('Preencha os campos')
     }
   }
 
+  function clearImc() {
+    setData({ name: '', height: 0, weight: 0, result: 0, resultText: '' })
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Calcule seu IMC</Text>
       <View style={styles.input_container}>
         <TextInput
           placeholder="Nome:"
+          value={data.name}
           style={styles.input}
           onChangeText={(name: any) => setData({ ...data, name: name })}
         />
         <TextInput
           placeholder="Peso:"
+          value={data.weight}
           keyboardType="numeric"
           style={styles.input}
           onChangeText={(weight: any) => setData({ ...data, weight: weight })}
         />
         <TextInput
           placeholder="Altura:"
+          value={data.height}
           keyboardType="numeric"
           style={styles.input}
           onChangeText={(height: any) => setData({ ...data, height: height })}
         />
       </View>
-
-      <TouchableOpacity onPress={resultImc} style={styles.button}>
-        <Text style={styles.buttonText}>Calcular</Text>
-      </TouchableOpacity>
-
+      {data.result === 0 ? (
+        <TouchableOpacity onPress={resultImc} style={styles.button}>
+          <Text style={styles.buttonText}>Calcular</Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={clearImc} style={styles.button}>
+          <Text style={styles.buttonText}>Calcular Novamente</Text>
+        </TouchableOpacity>
+      )}
       <Text style={styles.result}>{data.result != 0 && data.result}</Text>
       <Text style={[styles.result, { fontSize: 40 }]}>{data.resultText}</Text>
-
-      <StatusBar style="auto" />
     </View>
   )
 }
