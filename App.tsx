@@ -65,15 +65,16 @@ export default function App() {
           onChangeText={(height: any) => setData({ ...data, height: height })}
         />
       </View>
-      {data.result === 0 ? (
-        <TouchableOpacity onPress={resultImc} style={styles.button}>
+      <TouchableOpacity onPress={resultImc} style={styles.button}>
+        {data.result === 0 ? (
           <Text style={styles.buttonText}>Calcular</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity onPress={clearImc} style={styles.button}>
+        ) : (
           <Text style={styles.buttonText}>Calcular Novamente</Text>
-        </TouchableOpacity>
-      )}
+        )}
+      </TouchableOpacity>
+      <TouchableOpacity onPress={clearImc} style={styles.button}>
+        <Text style={styles.buttonText}>Limpar</Text>
+      </TouchableOpacity>
       <Text style={styles.result}>{data.result != 0 && data.result}</Text>
       <Text style={[styles.result, { fontSize: 40 }]}>{data.resultText}</Text>
     </View>
