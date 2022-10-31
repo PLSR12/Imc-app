@@ -72,9 +72,11 @@ export default function App() {
           <Text style={styles.buttonText}>Calcular Novamente</Text>
         )}
       </TouchableOpacity>
-      <TouchableOpacity onPress={clearImc} style={styles.button}>
-        <Text style={styles.buttonText}>Limpar</Text>
-      </TouchableOpacity>
+      {data.result != 0 && (
+        <TouchableOpacity onPress={clearImc} style={styles.button}>
+          <Text style={styles.buttonText}>Limpar</Text>
+        </TouchableOpacity>
+      )}
       <Text style={styles.result}>{data.result != 0 && data.result}</Text>
       <Text style={[styles.result, { fontSize: 40 }]}>{data.resultText}</Text>
     </View>
