@@ -33,8 +33,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#000000',
     marginTop: 35,
     borderRadius: 20,
+    flexDirection: 'column',
     minHeight: 60,
-    minWidth: 200,
+    width: 200,
   },
   buttonText: {
     justifyContent: 'center',
