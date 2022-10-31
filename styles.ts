@@ -33,8 +33,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#000000',
     marginTop: 35,
     borderRadius: 20,
-    height: 60,
-    width: 200,
+    minHeight: 60,
+    minWidth: 200,
   },
   buttonText: {
     justifyContent: 'center',
